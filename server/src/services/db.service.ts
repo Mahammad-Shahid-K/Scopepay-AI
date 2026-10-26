@@ -254,11 +254,12 @@ class DatabaseService {
   private webhookEvents: Array<{ id: string; event_id: string; event_type: string; processed_at: string }> = [];
 
   constructor() {
-    if (config.supabase.url && config.supabase.serviceKey) {
+    const supabaseKey = config.supabase.serviceKey || config.supabase.anonKey;
+    if (config.supabase.url && supabaseKey) {
       try {
-        this.supabase = createClient(config.supabase.url, config.supabase.serviceKey);
+        this.supabase = createClient(config.supabase.url, supabaseKey);
         this.isSupabaseConfigured = true;
-        console.log('[DatabaseService] Connected to Supabase PostgreSQL');
+        console.log('[DatabaseService] Connected to Supabase PostgreSQL at ' + config.supabase.url);
       } catch (err) {
         console.warn('[DatabaseService] Failed to initialize Supabase client, using local store', err);
       }
