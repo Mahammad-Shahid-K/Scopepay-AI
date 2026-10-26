@@ -1,0 +1,29 @@
+{
+  "name": "scopepay-ai",
+  "version": "1.0.0",
+  "description": "ScopePay AI - AI-Powered Project Agreement, Scope Management and Payment Assistant",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"red,cyan\" \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "build:client": "npm --prefix client run build",
+    "build:server": "npm --prefix server run build",
+    "build": "npm run build:server && npm run build:client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "keywords": [
+    "paypal",
+    "ai",
+    "gemini",
+    "scope-management",
+    "freelancer",
+    "invoicing",
+    "fintech"
+  ],
+  "author": "ScopePay AI Team",
+  "license": "MIT"
+}
