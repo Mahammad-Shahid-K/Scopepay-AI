@@ -86,9 +86,9 @@ export const SettingsPage: React.FC = () => {
   return (
     <div className="space-y-6 max-w-4xl mx-auto pb-12">
       {/* Header */}
-      <div className="pb-2 border-b border-[#E5E7EB]">
-        <h1 className="text-2xl font-bold tracking-tight text-[#111827]">Settings & Profile</h1>
-        <p className="text-xs text-[#6B7280] mt-0.5">
+      <div className="pb-2 border-b border-[#E5E7EB] dark:border-gray-800">
+        <h1 className="text-2xl font-bold tracking-tight text-[#111827] dark:text-gray-100">Settings & Profile</h1>
+        <p className="text-xs text-[#6B7280] dark:text-gray-400 mt-0.5">
           Manage your freelancer identity, default billing currency, and API connections.
         </p>
       </div>
@@ -143,13 +143,13 @@ export const SettingsPage: React.FC = () => {
               />
 
               <div>
-                <label className="block text-xs font-semibold text-[#111827] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#111827] dark:text-gray-200 uppercase tracking-wider mb-1.5">
                   Default Currency
                 </label>
                 <select
                   value={currency}
                   onChange={e => setCurrency(e.target.value)}
-                  className="w-full px-3.5 py-2 text-sm text-[#111827] bg-white border border-[#E5E7EB] rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-[#DC2626]"
+                  className="w-full px-3.5 py-2 text-sm text-[#111827] dark:text-gray-100 bg-white dark:bg-[#1A2234] border border-[#E5E7EB] dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-[#DC2626] dark:focus:border-red-500 transition-colors"
                 >
                   <option value="USD">USD - US Dollar ($)</option>
                   <option value="EUR">EUR - Euro (€)</option>
@@ -172,18 +172,18 @@ export const SettingsPage: React.FC = () => {
           </CardHeader>
           <CardContent className="space-y-5 text-xs">
             {/* Gemini API */}
-            <div className="p-4 rounded-md border border-[#E5E7EB] bg-[#F9FAFB] space-y-3">
+            <div className="p-4 rounded-md border border-[#E5E7EB] dark:border-gray-700 bg-[#F9FAFB] dark:bg-gray-800/40 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Key className="w-4 h-4 text-[#DC2626]" />
-                  <span className="font-bold text-[#111827]">Google Gemini API</span>
+                  <Key className="w-4 h-4 text-[#DC2626] dark:text-red-400" />
+                  <span className="font-bold text-[#111827] dark:text-gray-100">Google Gemini API</span>
                 </div>
                 {hasServerGeminiKey ? (
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#15803D] bg-[#F0FDF4] px-2 py-0.5 rounded border border-green-200">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#15803D] dark:text-emerald-400 bg-[#F0FDF4] dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-green-200 dark:border-emerald-800/50">
                     <CheckCircle2 className="w-3 h-3" /> Active on Server
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#B45309] bg-[#FFFBEB] px-2 py-0.5 rounded border border-amber-200">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#B45309] dark:text-amber-400 bg-[#FFFBEB] dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/50">
                     Fallback AI Active
                   </span>
                 )}
@@ -200,17 +200,17 @@ export const SettingsPage: React.FC = () => {
             </div>
 
             {/* PayPal Sandbox Status */}
-            <div className="p-4 rounded-md border border-[#E5E7EB] bg-[#F9FAFB] space-y-2">
+            <div className="p-4 rounded-md border border-[#E5E7EB] dark:border-gray-700 bg-[#F9FAFB] dark:bg-gray-800/40 space-y-2">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <CreditCard className="w-4 h-4 text-[#DC2626]" />
-                  <span className="font-bold text-[#111827]">PayPal Environment</span>
+                  <CreditCard className="w-4 h-4 text-[#DC2626] dark:text-red-400" />
+                  <span className="font-bold text-[#111827] dark:text-gray-100">PayPal Environment</span>
                 </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#DC2626] bg-[#FEF2F2] px-2 py-0.5 rounded border border-red-200">
+                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#DC2626] dark:text-red-400 bg-[#FEF2F2] dark:bg-red-950/40 px-2 py-0.5 rounded border border-red-200 dark:border-red-900/50">
                   SANDBOX
                 </span>
               </div>
-              <p className="text-[#6B7280] leading-relaxed">
+              <p className="text-[#6B7280] dark:text-gray-400 leading-relaxed">
                 Transactions use the PayPal Sandbox simulation environment (`api-m.sandbox.paypal.com`).
                 Amounts are recalculation-validated on the backend and never trusted from client-side scripts.
               </p>

@@ -18,6 +18,7 @@ import { Button } from '../components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Alert } from '../components/ui/Alert';
+import { ThemeToggle } from '../components/ui/ThemeToggle';
 import { api } from '../services/api';
 import { PublicInvoiceDetails } from '../types';
 
@@ -132,20 +133,20 @@ export const CustomerPaymentPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center p-4">
+      <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0B0F17] text-[#111827] dark:text-gray-100 flex flex-col items-center justify-center p-4 transition-colors">
         <div className="w-8 h-8 border-2 border-[#DC2626] border-t-transparent rounded-full animate-spin mb-3" />
-        <p className="text-xs text-[#6B7280]">Loading secure payment checkout...</p>
+        <p className="text-xs text-[#6B7280] dark:text-gray-400">Loading secure payment checkout...</p>
       </div>
     );
   }
 
   if (error && !invoice) {
     return (
-      <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center p-4">
-        <div className="max-w-md w-full bg-white border border-[#E5E7EB] rounded-lg p-8 text-center shadow-sm">
-          <AlertCircle className="w-10 h-10 text-[#DC2626] mx-auto mb-3" />
-          <h2 className="text-lg font-bold text-[#111827]">Invoice Unavailable</h2>
-          <p className="text-xs text-[#6B7280] mt-1 mb-6">{error}</p>
+      <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0B0F17] flex flex-col items-center justify-center p-4 transition-colors">
+        <div className="max-w-md w-full bg-white dark:bg-[#111827] border border-[#E5E7EB] dark:border-gray-800 rounded-lg p-8 text-center shadow-sm">
+          <AlertCircle className="w-10 h-10 text-[#DC2626] dark:text-red-400 mx-auto mb-3" />
+          <h2 className="text-lg font-bold text-[#111827] dark:text-gray-100">Invoice Unavailable</h2>
+          <p className="text-xs text-[#6B7280] dark:text-gray-400 mt-1 mb-6">{error}</p>
           <Link to="/">
             <Button variant="secondary" size="sm">Go to Homepage</Button>
           </Link>
@@ -157,22 +158,25 @@ export const CustomerPaymentPage: React.FC = () => {
   if (!invoice) return null;
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] text-[#111827] flex flex-col py-10 px-4 sm:px-6">
+    <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0B0F17] text-[#111827] dark:text-gray-100 flex flex-col py-10 px-4 sm:px-6 transition-colors">
       {/* Centered Payment Container */}
       <div className="max-w-2xl w-full mx-auto space-y-6">
         {/* Brand Header */}
-        <div className="flex items-center justify-between pb-2 border-b border-[#E5E7EB]">
+        <div className="flex items-center justify-between pb-3 border-b border-[#E5E7EB] dark:border-gray-800">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded bg-[#DC2626] flex items-center justify-center text-white">
+            <div className="w-7 h-7 rounded bg-[#DC2626] flex items-center justify-center text-white shadow-xs">
               <ShieldCheck className="w-4 h-4" />
             </div>
-            <span className="font-bold text-sm tracking-tight text-[#111827]">
+            <span className="font-bold text-sm tracking-tight text-[#111827] dark:text-gray-100">
               ScopePay <span className="text-[#DC2626]">AI</span>
             </span>
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-[#6B7280]">
-            <Lock className="w-3.5 h-3.5 text-[#15803D]" />
-            <span>256-Bit Secure PayPal Checkout</span>
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-1.5 text-xs text-[#6B7280] dark:text-gray-400">
+              <Lock className="w-3.5 h-3.5 text-[#15803D] dark:text-emerald-400" />
+              <span>256-Bit Secure PayPal Checkout</span>
+            </div>
+            <ThemeToggle />
           </div>
         </div>
 
@@ -184,48 +188,48 @@ export const CustomerPaymentPage: React.FC = () => {
 
         {/* Payment Confirmation Card (when Paid) */}
         {paymentSuccess ? (
-          <Card className="border-green-300 shadow-md">
+          <Card className="border-green-300 dark:border-emerald-800/60 shadow-md">
             <CardContent className="p-8 text-center space-y-5">
-              <div className="w-14 h-14 rounded-full bg-[#F0FDF4] border border-green-200 text-[#15803D] flex items-center justify-center mx-auto">
+              <div className="w-14 h-14 rounded-full bg-[#F0FDF4] dark:bg-emerald-950/50 border border-green-200 dark:border-emerald-800/60 text-[#15803D] dark:text-emerald-400 flex items-center justify-center mx-auto">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
 
               <div>
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#F0FDF4] text-[#15803D] border border-green-200 mb-2">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#F0FDF4] dark:bg-emerald-950/50 text-[#15803D] dark:text-emerald-400 border border-green-200 dark:border-emerald-800/60 mb-2">
                   Payment Verified & Completed
                 </span>
-                <h2 className="text-2xl font-extrabold text-[#111827]">
+                <h2 className="text-2xl font-extrabold text-[#111827] dark:text-gray-100">
                   Thank you! Payment Received
                 </h2>
-                <p className="text-xs text-[#6B7280] mt-1 max-w-sm mx-auto">
+                <p className="text-xs text-[#6B7280] dark:text-gray-400 mt-1 max-w-sm mx-auto">
                   Your payment has been captured and verified via PayPal Sandbox.
                   An automated receipt has been logged on the server.
                 </p>
               </div>
 
-              <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg p-5 text-left text-xs space-y-2.5 max-w-md mx-auto">
-                <div className="flex justify-between border-b border-[#E5E7EB] pb-2">
-                  <span className="text-[#6B7280]">Invoice Number:</span>
-                  <span className="font-bold text-[#111827]">{invoice.invoice_number}</span>
+              <div className="bg-[#F9FAFB] dark:bg-[#161F30] border border-[#E5E7EB] dark:border-gray-800 rounded-lg p-5 text-left text-xs space-y-2.5 max-w-md mx-auto">
+                <div className="flex justify-between border-b border-[#E5E7EB] dark:border-gray-800 pb-2">
+                  <span className="text-[#6B7280] dark:text-gray-400">Invoice Number:</span>
+                  <span className="font-bold text-[#111827] dark:text-gray-100">{invoice.invoice_number}</span>
                 </div>
-                <div className="flex justify-between border-b border-[#E5E7EB] pb-2">
-                  <span className="text-[#6B7280]">Amount Paid:</span>
-                  <span className="font-extrabold text-[#15803D]">
+                <div className="flex justify-between border-b border-[#E5E7EB] dark:border-gray-800 pb-2">
+                  <span className="text-[#6B7280] dark:text-gray-400">Amount Paid:</span>
+                  <span className="font-extrabold text-[#15803D] dark:text-emerald-400">
                     ${Number(invoice.amount_total).toFixed(2)} {invoice.currency}
                   </span>
                 </div>
-                <div className="flex justify-between border-b border-[#E5E7EB] pb-2">
-                  <span className="text-[#6B7280]">Project:</span>
-                  <span className="font-semibold text-[#111827]">{invoice.project_title}</span>
+                <div className="flex justify-between border-b border-[#E5E7EB] dark:border-gray-800 pb-2">
+                  <span className="text-[#6B7280] dark:text-gray-400">Project:</span>
+                  <span className="font-semibold text-[#111827] dark:text-gray-100">{invoice.project_title}</span>
                 </div>
-                <div className="flex justify-between border-b border-[#E5E7EB] pb-2">
-                  <span className="text-[#6B7280]">Recipient Freelancer:</span>
-                  <span className="font-semibold text-[#111827]">{invoice.freelancer_business || invoice.freelancer_name}</span>
+                <div className="flex justify-between border-b border-[#E5E7EB] dark:border-gray-800 pb-2">
+                  <span className="text-[#6B7280] dark:text-gray-400">Recipient Freelancer:</span>
+                  <span className="font-semibold text-[#111827] dark:text-gray-100">{invoice.freelancer_business || invoice.freelancer_name}</span>
                 </div>
                 {paymentData && (
                   <div className="flex justify-between pt-1">
-                    <span className="text-[#6B7280]">PayPal Capture ID:</span>
-                    <span className="font-mono text-[11px] text-[#111827]">{paymentData.captureId}</span>
+                    <span className="text-[#6B7280] dark:text-gray-400">PayPal Capture ID:</span>
+                    <span className="font-mono text-[11px] text-[#111827] dark:text-gray-200">{paymentData.captureId}</span>
                   </div>
                 )}
               </div>
@@ -244,26 +248,26 @@ export const CustomerPaymentPage: React.FC = () => {
           /* Active Payment Card */
           <Card className="shadow-sm">
             {/* Header with Amount */}
-            <div className="p-6 sm:p-8 bg-white border-b border-[#E5E7EB]">
+            <div className="p-6 sm:p-8 bg-white dark:bg-[#111827] border-b border-[#E5E7EB] dark:border-gray-800">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                  <span className="text-xs font-bold text-[#DC2626] uppercase tracking-wider">
+                  <span className="text-xs font-bold text-[#DC2626] dark:text-red-400 uppercase tracking-wider">
                     Customer Invoice
                   </span>
-                  <h1 className="text-2xl font-bold text-[#111827] mt-0.5">
+                  <h1 className="text-2xl font-bold text-[#111827] dark:text-gray-100 mt-0.5">
                     {invoice.invoice_number}
                   </h1>
-                  <p className="text-xs text-[#6B7280] mt-1">
-                    Issued by <strong>{invoice.freelancer_business || invoice.freelancer_name}</strong>
+                  <p className="text-xs text-[#6B7280] dark:text-gray-400 mt-1">
+                    Issued by <strong className="text-[#111827] dark:text-gray-200">{invoice.freelancer_business || invoice.freelancer_name}</strong>
                   </p>
                 </div>
 
                 <div className="text-left sm:text-right">
-                  <span className="text-xs text-[#6B7280] block font-medium">Total Amount Due</span>
-                  <span className="text-3xl font-extrabold text-[#111827] tracking-tight">
+                  <span className="text-xs text-[#6B7280] dark:text-gray-400 block font-medium">Total Amount Due</span>
+                  <span className="text-3xl font-extrabold text-[#111827] dark:text-gray-100 tracking-tight">
                     ${Number(invoice.amount_total).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                   </span>
-                  <span className="text-xs text-[#6B7280] ml-1 font-bold">{invoice.currency}</span>
+                  <span className="text-xs text-[#6B7280] dark:text-gray-400 ml-1 font-bold">{invoice.currency}</span>
                 </div>
               </div>
             </div>
@@ -271,29 +275,29 @@ export const CustomerPaymentPage: React.FC = () => {
             {/* Scope Deliverables Summary */}
             <CardContent className="p-6 sm:p-8 space-y-6">
               <div>
-                <h3 className="text-xs font-bold text-[#111827] uppercase tracking-wider mb-2">
+                <h3 className="text-xs font-bold text-[#111827] dark:text-gray-100 uppercase tracking-wider mb-2">
                   Project: {invoice.project_title}
                 </h3>
                 {invoice.project_description && (
-                  <p className="text-xs text-[#6B7280] leading-relaxed mb-4">
+                  <p className="text-xs text-[#6B7280] dark:text-gray-400 leading-relaxed mb-4">
                     {invoice.project_description}
                   </p>
                 )}
 
-                <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-md p-4">
-                  <span className="text-xs font-semibold text-[#111827] block mb-2">
+                <div className="bg-[#F9FAFB] dark:bg-[#161F30] border border-[#E5E7EB] dark:border-gray-800 rounded-md p-4">
+                  <span className="text-xs font-semibold text-[#111827] dark:text-gray-200 block mb-2">
                     Included Contract Deliverables:
                   </span>
-                  <ul className="space-y-2 text-xs text-[#4B5563]">
+                  <ul className="space-y-2 text-xs text-[#4B5563] dark:text-gray-300">
                     {invoice.deliverables && invoice.deliverables.length > 0 ? (
                       invoice.deliverables.map((d, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#15803D] flex-shrink-0 mt-0.5" />
-                          <span><strong>{d.title}:</strong> {d.description}</span>
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#15803D] dark:text-emerald-400 flex-shrink-0 mt-0.5" />
+                          <span><strong className="text-[#111827] dark:text-gray-100">{d.title}:</strong> {d.description}</span>
                         </li>
                       ))
                     ) : (
-                      <li className="text-[#6B7280]">Baseline milestone deliverables as contracted.</li>
+                      <li className="text-[#6B7280] dark:text-gray-400">Baseline milestone deliverables as contracted.</li>
                     )}
                   </ul>
                 </div>
@@ -301,22 +305,22 @@ export const CustomerPaymentPage: React.FC = () => {
 
               {/* Payment Processing Indicator */}
               {processing && (
-                <div className="p-4 bg-[#FFFBEB] border border-amber-200 rounded-md text-center space-y-2">
-                  <div className="w-6 h-6 border-2 border-[#B45309] border-t-transparent rounded-full animate-spin mx-auto" />
-                  <p className="text-xs font-bold text-[#B45309]">Verifying Payment on Server...</p>
-                  <p className="text-[11px] text-[#6B7280]">
+                <div className="p-4 bg-[#FFFBEB] dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/50 rounded-md text-center space-y-2">
+                  <div className="w-6 h-6 border-2 border-[#B45309] dark:border-amber-400 border-t-transparent rounded-full animate-spin mx-auto" />
+                  <p className="text-xs font-bold text-[#B45309] dark:text-amber-400">Verifying Payment on Server...</p>
+                  <p className="text-[11px] text-[#6B7280] dark:text-gray-400">
                     PayPal Sandbox capture in progress. Verifying order amount and transaction ID.
                   </p>
                 </div>
               )}
 
               {/* PayPal Sandbox Checkout Options */}
-              <div className="pt-4 border-t border-[#E5E7EB] space-y-4">
+              <div className="pt-4 border-t border-[#E5E7EB] dark:border-gray-800 space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#111827] uppercase tracking-wider">
+                  <span className="text-xs font-bold text-[#111827] dark:text-gray-100 uppercase tracking-wider">
                     Select Payment Method
                   </span>
-                  <span className="text-[11px] text-[#DC2626] font-semibold bg-[#FEF2F2] px-2 py-0.5 rounded border border-red-200">
+                  <span className="text-[11px] text-[#DC2626] dark:text-red-400 font-semibold bg-[#FEF2F2] dark:bg-red-950/40 px-2 py-0.5 rounded border border-red-200 dark:border-red-900/50">
                     PayPal Sandbox Enabled
                   </span>
                 </div>
@@ -334,7 +338,7 @@ export const CustomerPaymentPage: React.FC = () => {
                     <span>Sandbox Checkout (${Number(invoice.amount_total).toFixed(2)})</span>
                   </Button>
 
-                  <p className="text-[11px] text-[#6B7280] text-center">
+                  <p className="text-[11px] text-[#6B7280] dark:text-gray-400 text-center">
                     Simulates instant client approval & triggers backend order creation, capture, and verification.
                   </p>
                 </div>
@@ -366,7 +370,7 @@ export const CustomerPaymentPage: React.FC = () => {
               </div>
             </CardContent>
 
-            <div className="px-6 py-4 bg-[#F9FAFB] border-t border-[#E5E7EB] rounded-b-lg text-center text-[11px] text-[#6B7280]">
+            <div className="px-6 py-4 bg-[#F9FAFB] dark:bg-[#161F30] border-t border-[#E5E7EB] dark:border-gray-800 rounded-b-lg text-center text-[11px] text-[#6B7280] dark:text-gray-400">
               Payments are verified server-side via the PayPal Orders REST API v2 before invoice completion.
             </div>
           </Card>

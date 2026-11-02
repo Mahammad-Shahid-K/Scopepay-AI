@@ -10,7 +10,9 @@ export const Card: React.FC<CardProps> = ({ children, className = '', onClick })
   return (
     <div
       onClick={onClick}
-      className={`bg-white border border-[#E5E7EB] rounded-lg shadow-sm ${onClick ? 'cursor-pointer hover:border-gray-300 transition-colors' : ''} ${className}`}
+      className={`bg-white dark:bg-[#111827] border border-[#E5E7EB] dark:border-gray-800 rounded-lg shadow-sm transition-colors ${
+        onClick ? 'cursor-pointer hover:border-gray-300 dark:hover:border-gray-700' : ''
+      } ${className}`}
     >
       {children}
     </div>
@@ -21,21 +23,21 @@ export const CardHeader: React.FC<{ children: React.ReactNode; className?: strin
   children,
   className = ''
 }) => {
-  return <div className={`px-6 py-4 border-b border-[#E5E7EB] ${className}`}>{children}</div>;
+  return <div className={`px-6 py-4 border-b border-[#E5E7EB] dark:border-gray-800 ${className}`}>{children}</div>;
 };
 
 export const CardTitle: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
   className = ''
 }) => {
-  return <h3 className={`text-base font-semibold text-[#111827] ${className}`}>{children}</h3>;
+  return <h3 className={`text-base font-semibold text-[#111827] dark:text-gray-100 ${className}`}>{children}</h3>;
 };
 
 export const CardDescription: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
   className = ''
 }) => {
-  return <p className={`text-xs text-[#6B7280] mt-0.5 ${className}`}>{children}</p>;
+  return <p className={`text-xs text-[#6B7280] dark:text-gray-400 mt-0.5 ${className}`}>{children}</p>;
 };
 
 export const CardContent: React.FC<{ children: React.ReactNode; className?: string }> = ({
@@ -49,5 +51,5 @@ export const CardFooter: React.FC<{ children: React.ReactNode; className?: strin
   children,
   className = ''
 }) => {
-  return <div className={`px-6 py-4 bg-[#F9FAFB] border-t border-[#E5E7EB] rounded-b-lg ${className}`}>{children}</div>;
+  return <div className={`px-6 py-4 bg-[#F9FAFB] dark:bg-[#161F30] border-t border-[#E5E7EB] dark:border-gray-800 rounded-b-lg ${className}`}>{children}</div>;
 };

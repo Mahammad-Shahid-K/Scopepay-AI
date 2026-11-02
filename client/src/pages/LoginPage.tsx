@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { ShieldCheck, Eye, EyeOff, Sparkles, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Eye, EyeOff, Sparkles } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card, CardContent } from '../components/ui/Card';
 import { useAuth } from '../context/AuthContext';
+import { ThemeToggle } from '../components/ui/ThemeToggle';
 
 export const LoginPage: React.FC = () => {
   const [isRegister, setIsRegister] = useState(false);
@@ -64,20 +65,25 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0B0F17] flex flex-col justify-center py-12 sm:px-6 lg:px-8 transition-colors">
+      {/* Theme toggle in corner */}
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
+
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <Link to="/" className="inline-flex items-center gap-2 mb-4">
           <div className="w-9 h-9 rounded-md bg-[#DC2626] flex items-center justify-center text-white shadow-sm">
             <ShieldCheck className="w-5 h-5" />
           </div>
-          <span className="font-extrabold text-2xl tracking-tight text-[#111827]">
+          <span className="font-extrabold text-2xl tracking-tight text-[#111827] dark:text-gray-100">
             ScopePay <span className="text-[#DC2626]">AI</span>
           </span>
         </Link>
-        <h2 className="text-xl font-bold text-[#111827]">
+        <h2 className="text-xl font-bold text-[#111827] dark:text-gray-100">
           {isRegister ? 'Create Freelancer Account' : 'Sign in to your account'}
         </h2>
-        <p className="mt-1 text-xs text-[#6B7280]">
+        <p className="mt-1 text-xs text-[#6B7280] dark:text-gray-400">
           {isRegister
             ? 'Manage proposals, quotes, and sandbox payments with ease.'
             : 'Access your projects, scope agreements, and invoices.'}
@@ -88,7 +94,7 @@ export const LoginPage: React.FC = () => {
         <Card>
           <CardContent className="space-y-5">
             {error && (
-              <div className="p-3 bg-[#FEF2F2] border border-red-200 text-[#DC2626] text-xs rounded-md">
+              <div className="p-3 bg-[#FEF2F2] dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 text-[#DC2626] dark:text-red-400 text-xs rounded-md">
                 {error}
               </div>
             )}
@@ -123,7 +129,7 @@ export const LoginPage: React.FC = () => {
               />
 
               <div>
-                <label className="block text-xs font-semibold text-[#111827] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#111827] dark:text-gray-200 uppercase tracking-wider mb-1.5">
                   Password
                 </label>
                 <div className="relative">
@@ -132,13 +138,13 @@ export const LoginPage: React.FC = () => {
                     placeholder="••••••••"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
-                    className="w-full px-3.5 py-2 text-sm text-[#111827] bg-white border border-[#E5E7EB] rounded-md shadow-sm placeholder:text-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-[#DC2626] pr-10"
+                    className="w-full px-3.5 py-2 text-sm text-[#111827] dark:text-gray-100 bg-white dark:bg-[#1A2234] border border-[#E5E7EB] dark:border-gray-700 rounded-md shadow-sm placeholder:text-[#9CA3AF] dark:placeholder:text-gray-500 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-[#DC2626] dark:focus:border-red-500 pr-10 transition-colors"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#9CA3AF] hover:text-[#111827]"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#9CA3AF] dark:text-gray-500 hover:text-[#111827] dark:hover:text-gray-200"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -152,10 +158,10 @@ export const LoginPage: React.FC = () => {
 
             <div className="relative my-4">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-[#E5E7EB]" />
+                <div className="w-full border-t border-[#E5E7EB] dark:border-gray-700" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white px-2 text-[#9CA3AF] font-medium">Or quick demo</span>
+                <span className="bg-white dark:bg-[#111827] px-2 text-[#9CA3AF] dark:text-gray-500 font-medium">Or quick demo</span>
               </div>
             </div>
 
@@ -165,8 +171,8 @@ export const LoginPage: React.FC = () => {
               variant="secondary"
               onClick={handleDemoLogin}
               loading={loading}
-              className="w-full border-red-200 hover:bg-[#FEF2F2] text-[#DC2626]"
-              icon={<Sparkles className="w-4 h-4 text-[#DC2626]" />}
+              className="w-full border-red-200 dark:border-red-900/50 hover:bg-[#FEF2F2] dark:hover:bg-red-950/30 text-[#DC2626] dark:text-red-400"
+              icon={<Sparkles className="w-4 h-4 text-[#DC2626] dark:text-red-400" />}
             >
               Continue as Demo Freelancer (Alex Rivera)
             </Button>
@@ -178,7 +184,7 @@ export const LoginPage: React.FC = () => {
                   setIsRegister(!isRegister);
                   setError('');
                 }}
-                className="text-xs text-[#6B7280] hover:text-[#DC2626] font-medium"
+                className="text-xs text-[#6B7280] dark:text-gray-400 hover:text-[#DC2626] dark:hover:text-red-400 font-medium"
               >
                 {isRegister
                   ? 'Already have an account? Sign in'

@@ -122,24 +122,24 @@ export const ScopeComparisonPage: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto space-y-8 pb-16">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3 border-b border-[#E5E7EB]">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-3 border-b border-[#E5E7EB] dark:border-gray-800">
         <div>
           <button
             onClick={() => navigate(`/projects/${projectId}`)}
-            className="inline-flex items-center gap-1.5 text-xs text-[#6B7280] hover:text-[#111827] font-medium mb-1.5"
+            className="inline-flex items-center gap-1.5 text-xs text-[#6B7280] dark:text-gray-400 hover:text-[#111827] dark:hover:text-white font-medium mb-1.5 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to {project?.title || 'Project'}</span>
           </button>
           <div className="flex items-center gap-2.5">
-            <h1 className="text-2xl font-bold tracking-tight text-[#111827]">
+            <h1 className="text-2xl font-bold tracking-tight text-[#111827] dark:text-gray-100">
               Scope Change Analysis
             </h1>
-            <span className="bg-[#FEF2F2] text-[#DC2626] text-xs font-bold px-2 py-0.5 rounded border border-red-200">
+            <span className="bg-[#FEF2F2] dark:bg-red-950/40 text-[#DC2626] dark:text-red-400 text-xs font-bold px-2 py-0.5 rounded border border-red-200 dark:border-red-900/50">
               AI Creep Detection
             </span>
           </div>
-          <p className="text-xs text-[#6B7280] mt-0.5">
+          <p className="text-xs text-[#6B7280] dark:text-gray-400 mt-0.5">
             Identify new requirements before agreeing to additional work.
           </p>
         </div>
@@ -174,44 +174,44 @@ export const ScopeComparisonPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Original Approved Scope */}
         <Card className="h-full flex flex-col">
-          <CardHeader className="bg-[#F9FAFB]">
+          <CardHeader className="bg-[#F9FAFB] dark:bg-[#161F30]">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#15803D]" />
+                <span className="w-2 h-2 rounded-full bg-[#15803D] dark:bg-emerald-400" />
                 <CardTitle className="text-sm">Original Approved Scope (Baseline)</CardTitle>
               </div>
               <Badge status="approved" label="Version 1" />
             </div>
-            <p className="text-xs text-[#6B7280]">
+            <p className="text-xs text-[#6B7280] dark:text-gray-400">
               The agreed contract deliverables and exclusions currently in effect.
             </p>
           </CardHeader>
           <CardContent className="p-5 flex-1 space-y-4 text-xs">
             <div>
-              <span className="font-semibold text-[#111827] block mb-1">Agreed Deliverables:</span>
-              <ul className="space-y-1.5 text-[#4B5563]">
+              <span className="font-semibold text-[#111827] dark:text-gray-200 block mb-1">Agreed Deliverables:</span>
+              <ul className="space-y-1.5 text-[#4B5563] dark:text-gray-300">
                 {approvedScope?.deliverables?.map((d, i) => (
                   <li key={i} className="flex items-start gap-1.5">
-                    <span className="text-[#15803D] font-bold">✓</span>
+                    <span className="text-[#15803D] dark:text-emerald-400 font-bold">✓</span>
                     <span><strong>{d.title}:</strong> {d.description}</span>
                   </li>
-                )) || <li className="text-[#9CA3AF]">No deliverables loaded</li>}
+                )) || <li className="text-[#9CA3AF] dark:text-gray-500">No deliverables loaded</li>}
               </ul>
             </div>
 
-            <div className="pt-2 border-t border-[#E5E7EB]">
-              <span className="font-semibold text-[#DC2626] block mb-1">Contractual Exclusions:</span>
-              <ul className="space-y-1 text-[#6B7280]">
+            <div className="pt-2 border-t border-[#E5E7EB] dark:border-gray-800">
+              <span className="font-semibold text-[#DC2626] dark:text-red-400 block mb-1">Contractual Exclusions:</span>
+              <ul className="space-y-1 text-[#6B7280] dark:text-gray-400">
                 {approvedScope?.exclusions?.map((ex, i) => (
                   <li key={i} className="flex items-start gap-1.5">
-                    <span className="text-[#DC2626] font-bold">✕</span>
+                    <span className="text-[#DC2626] dark:text-red-400 font-bold">✕</span>
                     <span>{ex}</span>
                   </li>
-                )) || <li className="text-[#9CA3AF]">No exclusions listed</li>}
+                )) || <li className="text-[#9CA3AF] dark:text-gray-500">No exclusions listed</li>}
               </ul>
             </div>
 
-            <div className="pt-2 border-t border-[#E5E7EB] flex items-center justify-between text-[#6B7280]">
+            <div className="pt-2 border-t border-[#E5E7EB] dark:border-gray-800 flex items-center justify-between text-[#6B7280] dark:text-gray-400">
               <span>Agreed Duration: <strong>{approvedScope?.timeline_days || 14} days</strong></span>
               <span>Project Budget: <strong>${project?.budget || 0} {project?.currency}</strong></span>
             </div>
@@ -219,16 +219,16 @@ export const ScopeComparisonPage: React.FC = () => {
         </Card>
 
         {/* Right: New Customer Request */}
-        <Card className="h-full flex flex-col border-red-200">
-          <CardHeader className="bg-[#FEF2F2]/40 border-b border-red-200">
+        <Card className="h-full flex flex-col border-red-200 dark:border-red-900/50">
+          <CardHeader className="bg-[#FEF2F2]/40 dark:bg-red-950/40 border-b border-red-200 dark:border-red-900/50">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
-                <CardTitle className="text-sm text-[#DC2626]">New Customer Request</CardTitle>
+                <span className="w-2 h-2 rounded-full bg-[#DC2626] dark:bg-red-500 animate-pulse" />
+                <CardTitle className="text-sm text-[#DC2626] dark:text-red-400">New Customer Request</CardTitle>
               </div>
-              <span className="text-[11px] text-[#DC2626] font-semibold">Incoming Request</span>
+              <span className="text-[11px] text-[#DC2626] dark:text-red-400 font-semibold">Incoming Request</span>
             </div>
-            <p className="text-xs text-[#6B7280]">
+            <p className="text-xs text-[#6B7280] dark:text-gray-400">
               Paste the customer's email, message, or extra requested feature below.
             </p>
           </CardHeader>
@@ -239,7 +239,7 @@ export const ScopeComparisonPage: React.FC = () => {
                 onChange={e => setNewRequestText(e.target.value)}
                 placeholder="Paste client email or new feature request..."
                 rows={7}
-                className="w-full text-xs p-3 bg-white border border-[#E5E7EB] rounded-md focus:ring-1 focus:ring-red-500 focus:border-[#DC2626] text-[#111827]"
+                className="w-full text-xs p-3 bg-white dark:bg-[#1A2234] border border-[#E5E7EB] dark:border-gray-700 rounded-md focus:ring-1 focus:ring-red-500 focus:border-[#DC2626] dark:focus:border-red-500 text-[#111827] dark:text-gray-100 placeholder:text-[#9CA3AF] dark:placeholder:text-gray-500 transition-colors"
               />
             </div>
 
@@ -260,15 +260,15 @@ export const ScopeComparisonPage: React.FC = () => {
       {/* AI Scope Creep Analysis Results */}
       {analysis && (
         <div className="space-y-6 pt-4 animate-in fade-in">
-          <div className="border-b border-[#E5E7EB] pb-2 flex items-center justify-between">
+          <div className="border-b border-[#E5E7EB] dark:border-gray-800 pb-2 flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-bold text-[#111827]">AI Scope Comparison Assessment</h2>
-              <p className="text-xs text-[#6B7280]">
+              <h2 className="text-lg font-bold text-[#111827] dark:text-gray-100">AI Scope Comparison Assessment</h2>
+              <p className="text-xs text-[#6B7280] dark:text-gray-400">
                 AI recommendations must not automatically modify an approved contract. Review recommendations below.
               </p>
             </div>
             <div className="text-right">
-              <span className="text-xs font-semibold text-[#DC2626] bg-[#FEF2F2] px-2.5 py-1 rounded-full border border-red-200">
+              <span className="text-xs font-semibold text-[#DC2626] dark:text-red-400 bg-[#FEF2F2] dark:bg-red-950/40 px-2.5 py-1 rounded-full border border-red-200 dark:border-red-900/50">
                 Action: {analysis.recommendedAction.replace(/_/g, ' ').toUpperCase()}
               </span>
             </div>
@@ -276,33 +276,33 @@ export const ScopeComparisonPage: React.FC = () => {
 
           {/* Highlights & Financial Impact Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Card className="border-red-200 bg-[#FEF2F2]/30">
+            <Card className="border-red-200 dark:border-red-900/50 bg-[#FEF2F2]/30 dark:bg-red-950/20">
               <CardContent className="p-4">
-                <span className="text-[11px] font-semibold text-[#DC2626] uppercase">Scope Change Detected</span>
-                <p className="text-xl font-extrabold text-[#111827] mt-1">
+                <span className="text-[11px] font-semibold text-[#DC2626] dark:text-red-400 uppercase">Scope Change Detected</span>
+                <p className="text-xl font-extrabold text-[#111827] dark:text-gray-100 mt-1">
                   {analysis.isScopeChange ? 'YES — Additional Work' : 'NO — Covered in Scope'}
                 </p>
-                <p className="text-[11px] text-[#6B7280] mt-0.5">Outside original Version 1 baseline</p>
+                <p className="text-[11px] text-[#6B7280] dark:text-gray-400 mt-0.5">Outside original Version 1 baseline</p>
               </CardContent>
             </Card>
 
             <Card>
               <CardContent className="p-4">
-                <span className="text-[11px] font-semibold text-[#6B7280] uppercase">Recommended Additional Cost</span>
-                <p className="text-xl font-extrabold text-[#DC2626] mt-1">
+                <span className="text-[11px] font-semibold text-[#6B7280] dark:text-gray-400 uppercase">Recommended Additional Cost</span>
+                <p className="text-xl font-extrabold text-[#DC2626] dark:text-red-400 mt-1">
                   +${analysis.recommendedAdditionalCost} {project?.currency || 'USD'}
                 </p>
-                <p className="text-[11px] text-[#6B7280] mt-0.5">Estimated billable effort</p>
+                <p className="text-[11px] text-[#6B7280] dark:text-gray-400 mt-0.5">Estimated billable effort</p>
               </CardContent>
             </Card>
 
             <Card>
               <CardContent className="p-4">
-                <span className="text-[11px] font-semibold text-[#6B7280] uppercase">Timeline Impact</span>
-                <p className="text-xl font-extrabold text-[#111827] mt-1">
+                <span className="text-[11px] font-semibold text-[#6B7280] dark:text-gray-400 uppercase">Timeline Impact</span>
+                <p className="text-xl font-extrabold text-[#111827] dark:text-gray-100 mt-1">
                   +{analysis.recommendedAdditionalDays} Business Days
                 </p>
-                <p className="text-[11px] text-[#6B7280] mt-0.5">Required schedule extension</p>
+                <p className="text-[11px] text-[#6B7280] dark:text-gray-400 mt-0.5">Required schedule extension</p>
               </CardContent>
             </Card>
           </div>
@@ -310,23 +310,23 @@ export const ScopeComparisonPage: React.FC = () => {
           {/* Breakdown Sections */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* New Requirements Identified */}
-            <Card className="border-red-200">
-              <CardHeader className="bg-[#FEF2F2]/50">
-                <CardTitle className="text-xs text-[#DC2626] flex items-center gap-1.5">
+            <Card className="border-red-200 dark:border-red-900/50">
+              <CardHeader className="bg-[#FEF2F2]/50 dark:bg-red-950/30">
+                <CardTitle className="text-xs text-[#DC2626] dark:text-red-400 flex items-center gap-1.5">
                   <AlertTriangle className="w-4 h-4" />
                   <span>Newly Requested Work (Out of Scope)</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-4 space-y-3">
                 {analysis.newRequirements.map((req, i) => (
-                  <div key={i} className="p-3 bg-[#FEF2F2] rounded-md border border-red-200 text-xs">
+                  <div key={i} className="p-3 bg-[#FEF2F2] dark:bg-red-950/30 rounded-md border border-red-200 dark:border-red-900/50 text-xs">
                     <div className="flex items-center justify-between mb-1">
-                      <strong className="text-[#111827]">{req.title}</strong>
-                      <span className="text-[10px] uppercase font-bold text-[#DC2626] bg-white px-1.5 py-0.5 rounded border border-red-200">
+                      <strong className="text-[#111827] dark:text-gray-100">{req.title}</strong>
+                      <span className="text-[10px] uppercase font-bold text-[#DC2626] dark:text-red-400 bg-white dark:bg-gray-900 px-1.5 py-0.5 rounded border border-red-200 dark:border-red-900/50">
                         {req.impact} Impact • +${req.estimatedCost}
                       </span>
                     </div>
-                    <p className="text-[#4B5563]">{req.description}</p>
+                    <p className="text-[#4B5563] dark:text-gray-300">{req.description}</p>
                   </div>
                 ))}
               </CardContent>
@@ -336,13 +336,13 @@ export const ScopeComparisonPage: React.FC = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-xs flex items-center gap-1.5">
-                  <HelpCircle className="w-4 h-4 text-[#B45309]" />
+                  <HelpCircle className="w-4 h-4 text-[#B45309] dark:text-amber-400" />
                   <span>Clarification Questions to Ask Client</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-4 space-y-2 text-xs">
                 {analysis.followUpQuestions.map((q, i) => (
-                  <div key={i} className="p-2.5 bg-[#F9FAFB] rounded-md border border-[#E5E7EB] text-[#4B5563]">
+                  <div key={i} className="p-2.5 bg-[#F9FAFB] dark:bg-[#161F30] rounded-md border border-[#E5E7EB] dark:border-gray-800 text-[#4B5563] dark:text-gray-300">
                     <strong>Q{i + 1}:</strong> {q}
                   </div>
                 ))}
@@ -351,13 +351,13 @@ export const ScopeComparisonPage: React.FC = () => {
           </div>
 
           {/* Draft Professional Client Message */}
-          <Card className="border-[#DC2626]">
-            <CardHeader className="bg-[#FEF2F2] flex flex-row items-center justify-between">
+          <Card className="border-[#DC2626] dark:border-red-700">
+            <CardHeader className="bg-[#FEF2F2] dark:bg-red-950/40 flex flex-row items-center justify-between">
               <div>
-                <CardTitle className="text-xs text-[#DC2626]">
+                <CardTitle className="text-xs text-[#DC2626] dark:text-red-400">
                   AI-Drafted Courteous Client Response
                 </CardTitle>
-                <p className="text-[11px] text-[#6B7280]">
+                <p className="text-[11px] text-[#6B7280] dark:text-gray-400">
                   Ready to copy and send to the client to set expectations professionally.
                 </p>
               </div>
@@ -371,7 +371,7 @@ export const ScopeComparisonPage: React.FC = () => {
               </Button>
             </CardHeader>
             <CardContent className="p-5">
-              <div className="bg-white p-4 rounded-md border border-[#E5E7EB] text-xs text-[#111827] font-mono whitespace-pre-wrap leading-relaxed">
+              <div className="bg-white dark:bg-[#161F30] p-4 rounded-md border border-[#E5E7EB] dark:border-gray-800 text-xs text-[#111827] dark:text-gray-200 font-mono whitespace-pre-wrap leading-relaxed">
                 {analysis.draftClientMessage}
               </div>
             </CardContent>
@@ -388,19 +388,19 @@ export const ScopeComparisonPage: React.FC = () => {
       >
         <div className="space-y-4 text-xs">
           <div>
-            <label className="block text-xs font-semibold text-[#111827] uppercase tracking-wider mb-1">
+            <label className="block text-xs font-semibold text-[#111827] dark:text-gray-200 uppercase tracking-wider mb-1">
               Add-on Quotation Amount ({project?.currency || 'USD'})
             </label>
             <input
               type="number"
               value={revisedAmount}
               onChange={e => setRevisedAmount(e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-[#E5E7EB] rounded-md focus:ring-red-500 focus:border-[#DC2626]"
+              className="w-full px-3 py-2 text-sm bg-white dark:bg-[#1A2234] text-[#111827] dark:text-gray-100 border border-[#E5E7EB] dark:border-gray-700 rounded-md focus:ring-red-500 focus:border-[#DC2626] dark:focus:border-red-500 transition-colors"
               placeholder="350"
             />
           </div>
 
-          <div className="p-3 bg-[#FEF2F2] rounded-md border border-red-200 text-[#DC2626]">
+          <div className="p-3 bg-[#FEF2F2] dark:bg-red-950/40 rounded-md border border-red-200 dark:border-red-900/50 text-[#DC2626] dark:text-red-400">
             This supplementary quote will be logged under project "{project?.title}". Once accepted, you can issue an invoice with a PayPal Sandbox checkout link.
           </div>
 

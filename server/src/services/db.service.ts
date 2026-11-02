@@ -268,11 +268,23 @@ class DatabaseService {
     }
   }
 
+  private async safeSupabase<T>(queryPromise: PromiseLike<T>, timeoutMs = 1200): Promise<T | null> {
+    try {
+      const res = await Promise.race([
+        queryPromise,
+        new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Supabase timeout')), timeoutMs))
+      ]);
+      return res;
+    } catch {
+      return null;
+    }
+  }
+
   // --- Profile Methods ---
   async getProfile(): Promise<Profile> {
     if (this.supabase) {
-      const { data, error } = await this.supabase.from('profiles').select('*').limit(1).single();
-      if (!error && data) return data as Profile;
+      const res = await this.safeSupabase(this.supabase.from('profiles').select('*').limit(1).single());
+      if (res && !(res as any).error && (res as any).data) return (res as any).data as Profile;
     }
     return this.profile;
   }
@@ -509,16 +521,16 @@ class DatabaseService {
 
   async getInvoiceById(id: string): Promise<Invoice | null> {
     if (this.supabase) {
-      const { data, error } = await this.supabase.from('invoices').select('*').eq('id', id).single();
-      if (!error && data) return data as Invoice;
+      const res = await this.safeSupabase(this.supabase.from('invoices').select('*').eq('id', id).single());
+      if (res && !(res as any).error && (res as any).data) return (res as any).data as Invoice;
     }
     return this.invoices.find(i => i.id === id) || null;
   }
 
   async getInvoiceByShareToken(token: string): Promise<Invoice | null> {
     if (this.supabase) {
-      const { data, error } = await this.supabase.from('invoices').select('*').eq('share_token', token).single();
-      if (!error && data) return data as Invoice;
+      const res = await this.safeSupabase(this.supabase.from('invoices').select('*').eq('share_token', token).single());
+      if (res && !(res as any).error && (res as any).data) return (res as any).data as Invoice;
     }
     return this.invoices.find(i => i.share_token === token || i.id === token) || null;
   }

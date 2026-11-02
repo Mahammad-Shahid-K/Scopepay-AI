@@ -19,19 +19,19 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div className="w-full">
       {label && (
-        <label htmlFor={inputId} className="block text-xs font-semibold text-[#111827] uppercase tracking-wider mb-1.5">
+        <label htmlFor={inputId} className="block text-xs font-semibold text-[#111827] dark:text-gray-200 uppercase tracking-wider mb-1.5">
           {label}
         </label>
       )}
       <input
         id={inputId}
-        className={`w-full px-3.5 py-2 text-sm text-[#111827] bg-white border ${
-          error ? 'border-[#DC2626] focus:ring-red-500' : 'border-[#E5E7EB] focus:ring-red-500 focus:border-[#DC2626]'
-        } rounded-md shadow-sm placeholder:text-[#9CA3AF] focus:outline-none focus:ring-1 transition-colors ${className}`}
+        className={`w-full px-3.5 py-2 text-sm text-[#111827] dark:text-gray-100 bg-white dark:bg-[#1A2234] border ${
+          error ? 'border-[#DC2626] focus:ring-red-500' : 'border-[#E5E7EB] dark:border-gray-700 focus:ring-red-500 focus:border-[#DC2626] dark:focus:border-red-500'
+        } rounded-md shadow-sm placeholder:text-[#9CA3AF] dark:placeholder:text-gray-500 focus:outline-none focus:ring-1 transition-colors ${className}`}
         {...props}
       />
-      {error && <p className="mt-1 text-xs text-[#DC2626] font-medium">{error}</p>}
-      {helperText && !error && <p className="mt-1 text-xs text-[#6B7280]">{helperText}</p>}
+      {error && <p className="mt-1 text-xs text-[#DC2626] dark:text-red-400 font-medium">{error}</p>}
+      {helperText && !error && <p className="mt-1 text-xs text-[#6B7280] dark:text-gray-400">{helperText}</p>}
     </div>
   );
 };
@@ -56,20 +56,20 @@ export const Textarea: React.FC<TextareaProps> = ({
   return (
     <div className="w-full">
       {label && (
-        <label htmlFor={textareaId} className="block text-xs font-semibold text-[#111827] uppercase tracking-wider mb-1.5">
+        <label htmlFor={textareaId} className="block text-xs font-semibold text-[#111827] dark:text-gray-200 uppercase tracking-wider mb-1.5">
           {label}
         </label>
       )}
       <textarea
         id={textareaId}
         rows={rows}
-        className={`w-full px-3.5 py-2 text-sm text-[#111827] bg-white border ${
-          error ? 'border-[#DC2626] focus:ring-red-500' : 'border-[#E5E7EB] focus:ring-red-500 focus:border-[#DC2626]'
-        } rounded-md shadow-sm placeholder:text-[#9CA3AF] focus:outline-none focus:ring-1 transition-colors ${className}`}
+        className={`w-full px-3.5 py-2 text-sm text-[#111827] dark:text-gray-100 bg-white dark:bg-[#1A2234] border ${
+          error ? 'border-[#DC2626] focus:ring-red-500' : 'border-[#E5E7EB] dark:border-gray-700 focus:ring-red-500 focus:border-[#DC2626] dark:focus:border-red-500'
+        } rounded-md shadow-sm placeholder:text-[#9CA3AF] dark:placeholder:text-gray-500 focus:outline-none focus:ring-1 transition-colors ${className}`}
         {...props}
       />
-      {error && <p className="mt-1 text-xs text-[#DC2626] font-medium">{error}</p>}
-      {helperText && !error && <p className="mt-1 text-xs text-[#6B7280]">{helperText}</p>}
+      {error && <p className="mt-1 text-xs text-[#DC2626] dark:text-red-400 font-medium">{error}</p>}
+      {helperText && !error && <p className="mt-1 text-xs text-[#6B7280] dark:text-gray-400">{helperText}</p>}
     </div>
   );
 };

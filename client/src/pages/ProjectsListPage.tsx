@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FolderKanban, Plus, Search, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { FolderKanban, Plus, Search, ArrowUpRight } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
@@ -45,10 +45,10 @@ export const ProjectsListPage: React.FC = () => {
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-[#E5E7EB]">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-[#E5E7EB] dark:border-gray-800">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#111827]">Projects</h1>
-          <p className="text-xs text-[#6B7280] mt-0.5">
+          <h1 className="text-2xl font-bold tracking-tight text-[#111827] dark:text-gray-100">Projects</h1>
+          <p className="text-xs text-[#6B7280] dark:text-gray-400 mt-0.5">
             Manage your client deliverables, scope versions, quotations, and payments.
           </p>
         </div>
@@ -71,26 +71,26 @@ export const ProjectsListPage: React.FC = () => {
       <Card>
         <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="relative flex-1 max-w-md">
-            <Search className="w-4 h-4 text-[#9CA3AF] absolute left-3 top-2.5" />
+            <Search className="w-4 h-4 text-[#9CA3AF] dark:text-gray-500 absolute left-3 top-2.5" />
             <input
               type="text"
               placeholder="Search by project name or client..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs border border-[#E5E7EB] rounded-md focus:ring-1 focus:ring-red-500 focus:border-[#DC2626]"
+              className="w-full pl-9 pr-3 py-1.5 text-xs bg-white dark:bg-[#1A2234] text-[#111827] dark:text-gray-100 border border-[#E5E7EB] dark:border-gray-700 rounded-md focus:ring-1 focus:ring-red-500 focus:border-[#DC2626] dark:focus:border-red-500 placeholder:text-[#9CA3AF] dark:placeholder:text-gray-500"
             />
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs text-[#6B7280]">Status:</span>
+            <span className="text-xs text-[#6B7280] dark:text-gray-400">Status:</span>
             {['all', 'draft', 'proposed', 'approved', 'in_progress'].map(status => (
               <button
                 key={status}
                 onClick={() => setStatusFilter(status)}
                 className={`text-xs px-2.5 py-1 rounded-md font-medium capitalize transition-colors ${
                   statusFilter === status
-                    ? 'bg-[#FEF2F2] text-[#DC2626] font-bold border border-red-200'
-                    : 'text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB]'
+                    ? 'bg-[#FEF2F2] dark:bg-red-950/40 text-[#DC2626] dark:text-red-400 font-bold border border-red-200 dark:border-red-900/50'
+                    : 'text-[#6B7280] dark:text-gray-400 hover:text-[#111827] dark:hover:text-white hover:bg-[#F9FAFB] dark:hover:bg-gray-800'
                 }`}
               >
                 {status.replace('_', ' ')}
@@ -104,7 +104,7 @@ export const ProjectsListPage: React.FC = () => {
       <Card>
         <CardContent className="p-0">
           {loading ? (
-            <div className="py-20 text-center text-xs text-[#6B7280]">Loading projects...</div>
+            <div className="py-20 text-center text-xs text-[#6B7280] dark:text-gray-400">Loading projects...</div>
           ) : filtered.length === 0 ? (
             <div className="p-6">
               <EmptyState
@@ -119,7 +119,7 @@ export const ProjectsListPage: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b border-[#E5E7EB] bg-[#F9FAFB] text-[#6B7280] font-semibold uppercase tracking-wider">
+                  <tr className="border-b border-[#E5E7EB] dark:border-gray-800 bg-[#F9FAFB] dark:bg-[#161F30] text-[#6B7280] dark:text-gray-400 font-semibold uppercase tracking-wider">
                     <th className="py-3 px-6">Project Title</th>
                     <th className="py-3 px-6">Client</th>
                     <th className="py-3 px-6">Budget</th>
@@ -128,33 +128,33 @@ export const ProjectsListPage: React.FC = () => {
                     <th className="py-3 px-6 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E5E7EB]">
+                <tbody className="divide-y divide-[#E5E7EB] dark:divide-gray-800">
                   {filtered.map(proj => (
                     <tr
                       key={proj.id}
-                      className="hover:bg-[#F9FAFB] transition-colors cursor-pointer group"
+                      className="hover:bg-[#F9FAFB] dark:hover:bg-gray-800/50 transition-colors cursor-pointer group"
                       onClick={() => navigate(`/projects/${proj.id}`)}
                     >
-                      <td className="py-4 px-6 font-semibold text-[#111827]">
-                        <span className="group-hover:text-[#DC2626] transition-colors">{proj.title}</span>
+                      <td className="py-4 px-6 font-semibold text-[#111827] dark:text-gray-100">
+                        <span className="group-hover:text-[#DC2626] dark:group-hover:text-red-400 transition-colors">{proj.title}</span>
                       </td>
-                      <td className="py-4 px-6 text-[#6B7280]">
+                      <td className="py-4 px-6 text-[#6B7280] dark:text-gray-400">
                         {proj.client_name || 'Direct Client'}
                       </td>
-                      <td className="py-4 px-6 font-bold text-[#111827]">
+                      <td className="py-4 px-6 font-bold text-[#111827] dark:text-gray-100">
                         ${proj.budget.toLocaleString()} {proj.currency}
                       </td>
                       <td className="py-4 px-6">
                         <Badge status={proj.status} />
                       </td>
-                      <td className="py-4 px-6 text-[#6B7280]">
+                      <td className="py-4 px-6 text-[#6B7280] dark:text-gray-400">
                         {new Date(proj.created_at).toLocaleDateString()}
                       </td>
                       <td className="py-4 px-6 text-right">
                         <Link
                           to={`/projects/${proj.id}`}
                           onClick={e => e.stopPropagation()}
-                          className="text-[#DC2626] hover:text-[#B91C1C] font-semibold inline-flex items-center gap-1"
+                          className="text-[#DC2626] dark:text-red-400 hover:text-[#B91C1C] dark:hover:text-red-300 font-semibold inline-flex items-center gap-1"
                         >
                           Workspace <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>

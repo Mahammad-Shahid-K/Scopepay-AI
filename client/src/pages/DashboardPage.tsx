@@ -7,18 +7,15 @@ import {
   DollarSign,
   Plus,
   ArrowUpRight,
-  ExternalLink,
-  ShieldCheck,
-  AlertCircle,
   Receipt,
-  CheckCircle2
+  AlertCircle
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { EmptyState } from '../components/ui/EmptyState';
 import { api } from '../services/api';
-import { DashboardSummary, Project } from '../types';
+import { DashboardSummary } from '../types';
 
 export const DashboardPage: React.FC = () => {
   const [data, setData] = useState<DashboardSummary | null>(null);
@@ -46,7 +43,7 @@ export const DashboardPage: React.FC = () => {
     return (
       <div className="py-20 text-center">
         <div className="inline-block animate-spin rounded-full h-8 w-8 border-2 border-[#DC2626] border-t-transparent mb-3" />
-        <p className="text-xs text-[#6B7280]">Loading dashboard data...</p>
+        <p className="text-xs text-[#6B7280] dark:text-gray-400">Loading dashboard data...</p>
       </div>
     );
   }
@@ -54,7 +51,7 @@ export const DashboardPage: React.FC = () => {
   if (error || !data) {
     return (
       <div className="py-12">
-        <div className="bg-[#FEF2F2] border border-red-200 text-[#DC2626] p-4 rounded-lg flex items-center justify-between">
+        <div className="bg-[#FEF2F2] dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 text-[#DC2626] dark:text-red-400 p-4 rounded-lg flex items-center justify-between">
           <div className="flex items-center gap-2">
             <AlertCircle className="w-5 h-5 flex-shrink-0" />
             <span className="text-sm font-medium">{error || 'Could not load dashboard data'}</span>
@@ -70,10 +67,10 @@ export const DashboardPage: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Header Section */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-[#E5E7EB]">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-[#E5E7EB] dark:border-gray-800">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#111827]">Welcome back</h1>
-          <p className="text-xs text-[#6B7280] mt-1">
+          <h1 className="text-2xl font-bold tracking-tight text-[#111827] dark:text-gray-100">Welcome back</h1>
+          <p className="text-xs text-[#6B7280] dark:text-gray-400 mt-1">
             Manage projects, protect your scope, and track payments in one place.
           </p>
         </div>
@@ -92,16 +89,16 @@ export const DashboardPage: React.FC = () => {
         <Card>
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-[#6B7280] uppercase tracking-wider">
+              <span className="text-xs font-semibold text-[#6B7280] dark:text-gray-400 uppercase tracking-wider">
                 Total Projects
               </span>
-              <div className="w-8 h-8 rounded-md bg-[#F9FAFB] border border-[#E5E7EB] flex items-center justify-center text-[#DC2626]">
+              <div className="w-8 h-8 rounded-md bg-[#F9FAFB] dark:bg-gray-800 border border-[#E5E7EB] dark:border-gray-700 flex items-center justify-center text-[#DC2626] dark:text-red-400">
                 <FolderKanban className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-3">
-              <span className="text-2xl font-bold text-[#111827]">{data.totalProjects}</span>
-              <p className="text-[11px] text-[#6B7280] mt-1">Managed contracts & scopes</p>
+              <span className="text-2xl font-bold text-[#111827] dark:text-gray-100">{data.totalProjects}</span>
+              <p className="text-[11px] text-[#6B7280] dark:text-gray-400 mt-1">Managed contracts & scopes</p>
             </div>
           </CardContent>
         </Card>
@@ -110,16 +107,16 @@ export const DashboardPage: React.FC = () => {
         <Card>
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-[#6B7280] uppercase tracking-wider">
+              <span className="text-xs font-semibold text-[#6B7280] dark:text-gray-400 uppercase tracking-wider">
                 Active Projects
               </span>
-              <div className="w-8 h-8 rounded-md bg-[#FEF2F2] border border-red-200 flex items-center justify-center text-[#DC2626]">
+              <div className="w-8 h-8 rounded-md bg-[#FEF2F2] dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 flex items-center justify-center text-[#DC2626] dark:text-red-400">
                 <FileCheck2 className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-3">
-              <span className="text-2xl font-bold text-[#DC2626]">{data.activeProjects}</span>
-              <p className="text-[11px] text-[#6B7280] mt-1">Approved & in execution</p>
+              <span className="text-2xl font-bold text-[#DC2626] dark:text-red-400">{data.activeProjects}</span>
+              <p className="text-[11px] text-[#6B7280] dark:text-gray-400 mt-1">Approved & in execution</p>
             </div>
           </CardContent>
         </Card>
@@ -128,18 +125,18 @@ export const DashboardPage: React.FC = () => {
         <Card>
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-[#6B7280] uppercase tracking-wider">
+              <span className="text-xs font-semibold text-[#6B7280] dark:text-gray-400 uppercase tracking-wider">
                 Outstanding Invoices
               </span>
-              <div className="w-8 h-8 rounded-md bg-[#FFFBEB] border border-amber-200 flex items-center justify-center text-[#B45309]">
+              <div className="w-8 h-8 rounded-md bg-[#FFFBEB] dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/50 flex items-center justify-center text-[#B45309] dark:text-amber-400">
                 <Clock className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-3">
-              <span className="text-2xl font-bold text-[#111827]">
+              <span className="text-2xl font-bold text-[#111827] dark:text-gray-100">
                 ${data.outstandingAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </span>
-              <p className="text-[11px] text-[#B45309] font-medium mt-1">
+              <p className="text-[11px] text-[#B45309] dark:text-amber-400 font-medium mt-1">
                 {data.outstandingInvoicesCount} awaiting client payment
               </p>
             </div>
@@ -150,18 +147,18 @@ export const DashboardPage: React.FC = () => {
         <Card>
           <CardContent className="p-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-[#6B7280] uppercase tracking-wider">
+              <span className="text-xs font-semibold text-[#6B7280] dark:text-gray-400 uppercase tracking-wider">
                 Payments Received
               </span>
-              <div className="w-8 h-8 rounded-md bg-[#F0FDF4] border border-green-200 flex items-center justify-center text-[#15803D]">
+              <div className="w-8 h-8 rounded-md bg-[#F0FDF4] dark:bg-emerald-950/40 border border-green-200 dark:border-emerald-900/50 flex items-center justify-center text-[#15803D] dark:text-emerald-400">
                 <DollarSign className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-3">
-              <span className="text-2xl font-bold text-[#15803D]">
+              <span className="text-2xl font-bold text-[#15803D] dark:text-emerald-400">
                 ${data.totalReceivedAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </span>
-              <p className="text-[11px] text-[#15803D] font-medium mt-1">
+              <p className="text-[11px] text-[#15803D] dark:text-emerald-400 font-medium mt-1">
                 Verified PayPal Sandbox captures
               </p>
             </div>
@@ -174,7 +171,7 @@ export const DashboardPage: React.FC = () => {
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
             <CardTitle>Recent Projects</CardTitle>
-            <p className="text-xs text-[#6B7280]">
+            <p className="text-xs text-[#6B7280] dark:text-gray-400">
               Active client agreements, scope approvals, and financial status
             </p>
           </div>
@@ -198,7 +195,7 @@ export const DashboardPage: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b border-[#E5E7EB] bg-[#F9FAFB] text-[#6B7280] font-semibold uppercase tracking-wider">
+                  <tr className="border-b border-[#E5E7EB] dark:border-gray-800 bg-[#F9FAFB] dark:bg-[#161F30] text-[#6B7280] dark:text-gray-400 font-semibold uppercase tracking-wider">
                     <th className="py-3 px-6">Project Name</th>
                     <th className="py-3 px-6">Client</th>
                     <th className="py-3 px-6">Project Value</th>
@@ -207,35 +204,35 @@ export const DashboardPage: React.FC = () => {
                     <th className="py-3 px-6 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E5E7EB]">
+                <tbody className="divide-y divide-[#E5E7EB] dark:divide-gray-800">
                   {data.recentProjects.map(project => (
                     <tr
                       key={project.id}
-                      className="hover:bg-[#F9FAFB] transition-colors cursor-pointer group"
+                      className="hover:bg-[#F9FAFB] dark:hover:bg-gray-800/50 transition-colors cursor-pointer group"
                       onClick={() => navigate(`/projects/${project.id}`)}
                     >
-                      <td className="py-4 px-6 font-semibold text-[#111827]">
+                      <td className="py-4 px-6 font-semibold text-[#111827] dark:text-gray-100">
                         <div className="flex items-center gap-2">
-                          <span className="group-hover:text-[#DC2626] transition-colors">{project.title}</span>
+                          <span className="group-hover:text-[#DC2626] dark:group-hover:text-red-400 transition-colors">{project.title}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-6 text-[#6B7280]">
+                      <td className="py-4 px-6 text-[#6B7280] dark:text-gray-400">
                         {project.client_name || 'Direct Client'}
                       </td>
-                      <td className="py-4 px-6 font-semibold text-[#111827]">
+                      <td className="py-4 px-6 font-semibold text-[#111827] dark:text-gray-100">
                         ${project.budget.toLocaleString()} {project.currency}
                       </td>
                       <td className="py-4 px-6">
                         <Badge status={project.status} />
                       </td>
-                      <td className="py-4 px-6 text-[#6B7280]">
+                      <td className="py-4 px-6 text-[#6B7280] dark:text-gray-400">
                         {new Date(project.updated_at || project.created_at).toLocaleDateString()}
                       </td>
                       <td className="py-4 px-6 text-right">
                         <Link
                           to={`/projects/${project.id}`}
                           onClick={e => e.stopPropagation()}
-                          className="text-[#DC2626] hover:text-[#B91C1C] font-semibold inline-flex items-center gap-1"
+                          className="text-[#DC2626] dark:text-red-400 hover:text-[#B91C1C] dark:hover:text-red-300 font-semibold inline-flex items-center gap-1"
                         >
                           Manage <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>
@@ -254,7 +251,7 @@ export const DashboardPage: React.FC = () => {
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
             <CardTitle>Recent Verified Payments</CardTitle>
-            <p className="text-xs text-[#6B7280]">
+            <p className="text-xs text-[#6B7280] dark:text-gray-400">
               Backend-captured transactions processed through PayPal Sandbox
             </p>
           </div>
@@ -277,7 +274,7 @@ export const DashboardPage: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b border-[#E5E7EB] bg-[#F9FAFB] text-[#6B7280] font-semibold uppercase tracking-wider">
+                  <tr className="border-b border-[#E5E7EB] dark:border-gray-800 bg-[#F9FAFB] dark:bg-[#161F30] text-[#6B7280] dark:text-gray-400 font-semibold uppercase tracking-wider">
                     <th className="py-3 px-6">PayPal Order / Capture ID</th>
                     <th className="py-3 px-6">Payer</th>
                     <th className="py-3 px-6">Amount</th>
@@ -285,19 +282,19 @@ export const DashboardPage: React.FC = () => {
                     <th className="py-3 px-6">Verification Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E5E7EB]">
+                <tbody className="divide-y divide-[#E5E7EB] dark:divide-gray-800">
                   {data.recentPayments.map(payment => (
-                    <tr key={payment.id} className="hover:bg-[#F9FAFB]">
-                      <td className="py-4 px-6 font-mono font-medium text-[#111827]">
+                    <tr key={payment.id} className="hover:bg-[#F9FAFB] dark:hover:bg-gray-800/50 transition-colors">
+                      <td className="py-4 px-6 font-mono font-medium text-[#111827] dark:text-gray-200">
                         {payment.paypal_capture_id || payment.paypal_order_id}
                       </td>
-                      <td className="py-4 px-6 text-[#6B7280]">
+                      <td className="py-4 px-6 text-[#6B7280] dark:text-gray-400">
                         {payment.payer_name || payment.payer_email || 'Sandbox Client'}
                       </td>
-                      <td className="py-4 px-6 font-bold text-[#15803D]">
+                      <td className="py-4 px-6 font-bold text-[#15803D] dark:text-emerald-400">
                         +${Number(payment.amount).toFixed(2)} {payment.currency}
                       </td>
-                      <td className="py-4 px-6 text-[#6B7280]">
+                      <td className="py-4 px-6 text-[#6B7280] dark:text-gray-400">
                         {new Date(payment.captured_at || payment.created_at).toLocaleString()}
                       </td>
                       <td className="py-4 px-6">

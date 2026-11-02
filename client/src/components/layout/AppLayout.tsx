@@ -7,7 +7,7 @@ export const AppLayout: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] flex flex-col">
+    <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0B0F17] text-[#111827] dark:text-[#F3F4F6] flex flex-col transition-colors">
       <Sidebar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
 
       <div className="md:pl-64 flex flex-col flex-1 min-w-0">

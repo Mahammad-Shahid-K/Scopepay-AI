@@ -75,17 +75,17 @@ export const PaymentHistoryPage: React.FC = () => {
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-[#E5E7EB]">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-[#E5E7EB] dark:border-gray-800">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#111827]">Payment History</h1>
-          <p className="text-xs text-[#6B7280] mt-0.5">
+          <h1 className="text-2xl font-bold tracking-tight text-[#111827] dark:text-gray-100">Payment History</h1>
+          <p className="text-xs text-[#6B7280] dark:text-gray-400 mt-0.5">
             Verified backend transactions captured through PayPal Sandbox.
           </p>
         </div>
         <div className="flex items-center gap-2">
           <div className="text-right">
-            <span className="text-[11px] text-[#6B7280] block">Total Verified Volume</span>
-            <span className="text-lg font-extrabold text-[#15803D]">
+            <span className="text-[11px] text-[#6B7280] dark:text-gray-400 block">Total Verified Volume</span>
+            <span className="text-lg font-extrabold text-[#15803D] dark:text-emerald-400">
               ${totalCaptured.toLocaleString('en-US', { minimumFractionDigits: 2 })} USD
             </span>
           </div>
@@ -102,18 +102,18 @@ export const PaymentHistoryPage: React.FC = () => {
       <Card>
         <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="relative flex-1 max-w-md">
-            <Search className="w-4 h-4 text-[#9CA3AF] absolute left-3 top-2.5" />
+            <Search className="w-4 h-4 text-[#9CA3AF] dark:text-gray-500 absolute left-3 top-2.5" />
             <input
               type="text"
               placeholder="Search by PayPal Order ID, Capture ID, or Payer..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs border border-[#E5E7EB] rounded-md focus:ring-1 focus:ring-red-500 focus:border-[#DC2626]"
+              className="w-full pl-9 pr-3 py-1.5 text-xs bg-white dark:bg-[#1A2234] text-[#111827] dark:text-gray-100 border border-[#E5E7EB] dark:border-gray-700 rounded-md focus:ring-1 focus:ring-red-500 focus:border-[#DC2626] dark:focus:border-red-500 placeholder:text-[#9CA3AF] dark:placeholder:text-gray-500"
             />
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-semibold text-[#DC2626] bg-[#FEF2F2] px-2.5 py-1 rounded border border-red-200">
+            <span className="text-[11px] font-semibold text-[#DC2626] dark:text-red-400 bg-[#FEF2F2] dark:bg-red-950/40 px-2.5 py-1 rounded border border-red-200 dark:border-red-900/50">
               PayPal Sandbox Environment
             </span>
           </div>
@@ -137,7 +137,7 @@ export const PaymentHistoryPage: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b border-[#E5E7EB] bg-[#F9FAFB] text-[#6B7280] font-semibold uppercase tracking-wider">
+                  <tr className="border-b border-[#E5E7EB] dark:border-gray-800 bg-[#F9FAFB] dark:bg-[#161F30] text-[#6B7280] dark:text-gray-400 font-semibold uppercase tracking-wider">
                     <th className="py-3 px-6">PayPal Transaction Reference</th>
                     <th className="py-3 px-6">Invoice</th>
                     <th className="py-3 px-6">Project & Payer</th>
@@ -146,36 +146,36 @@ export const PaymentHistoryPage: React.FC = () => {
                     <th className="py-3 px-6 text-right">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E5E7EB]">
+                <tbody className="divide-y divide-[#E5E7EB] dark:divide-gray-800">
                   {filteredPayments.map(payment => {
                     const project = getProject(payment.invoice_id);
                     return (
-                      <tr key={payment.id} className="hover:bg-[#F9FAFB] transition-colors">
+                      <tr key={payment.id} className="hover:bg-[#F9FAFB] dark:hover:bg-gray-800/50 transition-colors">
                         <td className="py-4 px-6 font-mono">
-                          <div className="font-bold text-[#111827]">
+                          <div className="font-bold text-[#111827] dark:text-gray-100">
                             {payment.paypal_capture_id || payment.paypal_order_id}
                           </div>
                           {payment.paypal_capture_id && (
-                            <span className="text-[10px] text-[#6B7280]">
+                            <span className="text-[10px] text-[#6B7280] dark:text-gray-400">
                               Order: {payment.paypal_order_id}
                             </span>
                           )}
                         </td>
-                        <td className="py-4 px-6 font-semibold text-[#111827]">
+                        <td className="py-4 px-6 font-semibold text-[#111827] dark:text-gray-100">
                           {getInvoiceNumber(payment.invoice_id)}
                         </td>
                         <td className="py-4 px-6">
-                          <div className="font-medium text-[#111827]">
+                          <div className="font-medium text-[#111827] dark:text-gray-100">
                             {project?.title || 'Direct Client Order'}
                           </div>
-                          <span className="text-[11px] text-[#6B7280]">
+                          <span className="text-[11px] text-[#6B7280] dark:text-gray-400">
                             {payment.payer_name || payment.payer_email || 'Sandbox Buyer'}
                           </span>
                         </td>
-                        <td className="py-4 px-6 font-bold text-[#15803D]">
+                        <td className="py-4 px-6 font-bold text-[#15803D] dark:text-emerald-400">
                           +${Number(payment.amount).toFixed(2)} {payment.currency}
                         </td>
-                        <td className="py-4 px-6 text-[#6B7280]">
+                        <td className="py-4 px-6 text-[#6B7280] dark:text-gray-400">
                           {new Date(payment.captured_at || payment.created_at).toLocaleString()}
                         </td>
                         <td className="py-4 px-6 text-right">

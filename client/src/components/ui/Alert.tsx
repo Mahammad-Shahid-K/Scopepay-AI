@@ -16,24 +16,24 @@ export const Alert: React.FC<AlertProps> = ({
 }) => {
   const styles = {
     info: {
-      container: 'bg-[#F9FAFB] border-[#E5E7EB] text-[#111827]',
-      icon: <Info className="w-5 h-5 text-[#DC2626] flex-shrink-0" />,
-      titleColor: 'text-[#111827]'
+      container: 'bg-[#F9FAFB] dark:bg-gray-800/50 border-[#E5E7EB] dark:border-gray-700 text-[#111827] dark:text-gray-100',
+      icon: <Info className="w-5 h-5 text-[#DC2626] dark:text-red-400 flex-shrink-0" />,
+      titleColor: 'text-[#111827] dark:text-gray-100'
     },
     success: {
-      container: 'bg-[#F0FDF4] border-green-200 text-green-900',
-      icon: <CheckCircle2 className="w-5 h-5 text-[#15803D] flex-shrink-0" />,
-      titleColor: 'text-[#15803D]'
+      container: 'bg-[#F0FDF4] dark:bg-emerald-950/40 border-green-200 dark:border-emerald-800/50 text-green-900 dark:text-emerald-200',
+      icon: <CheckCircle2 className="w-5 h-5 text-[#15803D] dark:text-emerald-400 flex-shrink-0" />,
+      titleColor: 'text-[#15803D] dark:text-emerald-400'
     },
     warning: {
-      container: 'bg-[#FFFBEB] border-amber-200 text-amber-900',
-      icon: <AlertTriangle className="w-5 h-5 text-[#B45309] flex-shrink-0" />,
-      titleColor: 'text-[#B45309]'
+      container: 'bg-[#FFFBEB] dark:bg-amber-950/40 border-amber-200 dark:border-amber-800/50 text-amber-900 dark:text-amber-200',
+      icon: <AlertTriangle className="w-5 h-5 text-[#B45309] dark:text-amber-400 flex-shrink-0" />,
+      titleColor: 'text-[#B45309] dark:text-amber-400'
     },
     error: {
-      container: 'bg-[#FEF2F2] border-red-200 text-red-900',
-      icon: <AlertCircle className="w-5 h-5 text-[#DC2626] flex-shrink-0" />,
-      titleColor: 'text-[#DC2626]'
+      container: 'bg-[#FEF2F2] dark:bg-red-950/40 border-red-200 dark:border-red-800/50 text-red-900 dark:text-red-200',
+      icon: <AlertCircle className="w-5 h-5 text-[#DC2626] dark:text-red-400 flex-shrink-0" />,
+      titleColor: 'text-[#DC2626] dark:text-red-400'
     }
   };
 

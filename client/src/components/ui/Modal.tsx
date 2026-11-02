@@ -46,23 +46,24 @@ export const Modal: React.FC<ModalProps> = ({
       <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         {/* Backdrop */}
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity animate-in fade-in"
+          className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity animate-in fade-in"
           onClick={onClose}
         />
 
         {/* Modal Card */}
         <div
-          className={`relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full ${maxWidths[maxWidth]} my-8 border border-[#E5E7EB] z-10`}
+          className={`relative transform overflow-hidden rounded-lg bg-white dark:bg-[#111827] text-left shadow-xl transition-all w-full ${maxWidths[maxWidth]} my-8 border border-[#E5E7EB] dark:border-gray-800 z-10`}
           onClick={e => e.stopPropagation()}
         >
-          <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E7EB]">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E7EB] dark:border-gray-800">
             <div>
-              <h3 className="text-base font-semibold text-[#111827]">{title}</h3>
-              {description && <p className="text-xs text-[#6B7280] mt-0.5">{description}</p>}
+              <h3 className="text-base font-semibold text-[#111827] dark:text-gray-100">{title}</h3>
+              {description && <p className="text-xs text-[#6B7280] dark:text-gray-400 mt-0.5">{description}</p>}
             </div>
             <button
               onClick={onClose}
-              className="text-[#6B7280] hover:text-[#111827] p-1 rounded-md hover:bg-[#F9FAFB] transition-colors"
+              aria-label="Close modal"
+              className="text-[#6B7280] dark:text-gray-400 hover:text-[#111827] dark:hover:text-white p-1 rounded-md hover:bg-[#F9FAFB] dark:hover:bg-gray-800 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>

@@ -6,14 +6,41 @@
   :root {
     --primary-bg: #FFFFFF;
     --secondary-bg: #F9FAFB;
+    --card-bg: #FFFFFF;
+    --card-subtle: #F9FAFB;
     --primary-red: #DC2626;
     --hover-red: #B91C1C;
     --light-red: #FEF2F2;
     --main-text: #111827;
     --secondary-text: #6B7280;
+    --muted-text: #9CA3AF;
     --border-color: #E5E7EB;
+    --input-bg: #FFFFFF;
     --success: #15803D;
+    --success-bg: #F0FDF4;
     --warning: #B45309;
+    --warning-bg: #FFFBEB;
+    --error-bg: #FEF2F2;
+  }
+
+  .dark {
+    --primary-bg: #0B0F17;
+    --secondary-bg: #111827;
+    --card-bg: #111827;
+    --card-subtle: #161F30;
+    --primary-red: #EF4444;
+    --hover-red: #DC2626;
+    --light-red: rgba(239, 68, 68, 0.15);
+    --main-text: #F9FAFB;
+    --secondary-text: #9CA3AF;
+    --muted-text: #6B7280;
+    --border-color: #1F2937;
+    --input-bg: #111827;
+    --success: #22C55E;
+    --success-bg: rgba(34, 197, 94, 0.14);
+    --warning: #F59E0B;
+    --warning-bg: rgba(245, 158, 11, 0.14);
+    --error-bg: rgba(239, 68, 68, 0.15);
   }
 
   body {
@@ -21,6 +48,23 @@
     color: var(--main-text);
     font-family: 'Inter', system-ui, sans-serif;
   }
+
+  /* Form control color scheme */
+  input, textarea, select {
+    color-scheme: light;
+  }
+  .dark input, .dark textarea, .dark select {
+    color-scheme: dark;
+  }
+}
+
+/* Smooth theme transition */
+html.transition-theme,
+html.transition-theme *,
+html.transition-theme *::before,
+html.transition-theme *::after {
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out, color 0.15s ease-out, fill 0.15s ease-out !important;
+  transition-delay: 0s !important;
 }
 
 /* Custom subtle scrollbar */
@@ -29,12 +73,31 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F9FAFB;
+  background: var(--secondary-bg);
 }
 ::-webkit-scrollbar-thumb {
   background: #D1D5DB;
   border-radius: 9999px;
 }
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+}
 ::-webkit-scrollbar-thumb:hover {
   background: #9CA3AF;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4B5563;
+}
+
+/* Dark mode fallback helpers for deep nested elements */
+.dark .table-header-dark {
+  background-color: #161F30;
+  color: #9CA3AF;
+  border-color: #1F2937;
+}
+
+/* Smooth transitions for interactive elements */
+button, a, input, select, textarea {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 150ms;
 }

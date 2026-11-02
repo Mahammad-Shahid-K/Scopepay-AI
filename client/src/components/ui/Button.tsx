@@ -21,11 +21,11 @@ export const Button: React.FC<ButtonProps> = ({
   const baseStyles = 'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none';
 
   const variants = {
-    primary: 'bg-[#DC2626] text-white hover:bg-[#B91C1C] focus:ring-red-600 shadow-sm border border-transparent',
-    secondary: 'bg-white text-[#111827] border border-[#E5E7EB] hover:bg-[#F9FAFB] focus:ring-gray-300 shadow-sm',
-    'outline-red': 'bg-white text-[#DC2626] border border-[#DC2626] hover:bg-[#FEF2F2] focus:ring-red-500',
-    ghost: 'bg-transparent text-[#6B7280] hover:text-[#111827] hover:bg-[#F9FAFB] focus:ring-gray-300',
-    danger: 'bg-[#B91C1C] text-white hover:bg-[#991B1B] focus:ring-red-700 shadow-sm'
+    primary: 'bg-[#DC2626] text-white hover:bg-[#B91C1C] focus:ring-red-600 shadow-sm border border-transparent dark:focus:ring-offset-gray-900',
+    secondary: 'bg-white dark:bg-[#1F2937] text-[#111827] dark:text-gray-100 border border-[#E5E7EB] dark:border-gray-700 hover:bg-[#F9FAFB] dark:hover:bg-gray-700 focus:ring-gray-300 dark:focus:ring-gray-600 dark:focus:ring-offset-gray-900 shadow-sm',
+    'outline-red': 'bg-white dark:bg-[#111827] text-[#DC2626] dark:text-red-400 border border-[#DC2626] dark:border-red-500/70 hover:bg-[#FEF2F2] dark:hover:bg-red-950/30 focus:ring-red-500 dark:focus:ring-offset-gray-900',
+    ghost: 'bg-transparent text-[#6B7280] dark:text-gray-300 hover:text-[#111827] dark:hover:text-white hover:bg-[#F9FAFB] dark:hover:bg-gray-800 focus:ring-gray-300 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-900',
+    danger: 'bg-[#B91C1C] text-white hover:bg-[#991B1B] focus:ring-red-700 shadow-sm dark:focus:ring-offset-gray-900'
   };
 
   const sizes = {

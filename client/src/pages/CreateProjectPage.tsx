@@ -92,7 +92,7 @@ export const CreateProjectPage: React.FC = () => {
       {/* Top Breadcrumb */}
       <button
         onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-1.5 text-xs text-[#6B7280] hover:text-[#111827] font-medium"
+        className="inline-flex items-center gap-1.5 text-xs text-[#6B7280] dark:text-gray-400 hover:text-[#111827] dark:hover:text-white font-medium"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         <span>Back to Projects</span>
@@ -100,8 +100,8 @@ export const CreateProjectPage: React.FC = () => {
 
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#111827]">Create a New Project</h1>
-        <p className="text-xs text-[#6B7280] mt-1">
+        <h1 className="text-2xl font-bold tracking-tight text-[#111827] dark:text-gray-100">Create a New Project</h1>
+        <p className="text-xs text-[#6B7280] dark:text-gray-400 mt-1">
           Turn your customer's requirements into a clear project scope and quotation.
         </p>
       </div>
@@ -117,7 +117,7 @@ export const CreateProjectPage: React.FC = () => {
           <form onSubmit={handleGenerateScope} className="space-y-6">
             {/* Section 1: Project Details */}
             <div className="space-y-4">
-              <h3 className="text-sm font-bold text-[#111827] border-b border-[#E5E7EB] pb-2">
+              <h3 className="text-sm font-bold text-[#111827] dark:text-gray-100 border-b border-[#E5E7EB] dark:border-gray-800 pb-2">
                 1. Project & Client Information
               </h3>
 
@@ -162,7 +162,7 @@ export const CreateProjectPage: React.FC = () => {
 
             {/* Section 2: Requirements */}
             <div className="space-y-4 pt-2">
-              <h3 className="text-sm font-bold text-[#111827] border-b border-[#E5E7EB] pb-2">
+              <h3 className="text-sm font-bold text-[#111827] dark:text-gray-100 border-b border-[#E5E7EB] dark:border-gray-800 pb-2">
                 2. Customer Requirements & Brief
               </h3>
 
@@ -191,13 +191,13 @@ export const CreateProjectPage: React.FC = () => {
                 />
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#111827] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-[#111827] dark:text-gray-200 uppercase tracking-wider mb-1.5">
                     Currency
                   </label>
                   <select
                     value={currency}
                     onChange={e => setCurrency(e.target.value)}
-                    className="w-full px-3.5 py-2 text-sm text-[#111827] bg-white border border-[#E5E7EB] rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-[#DC2626]"
+                    className="w-full px-3.5 py-2 text-sm text-[#111827] dark:text-gray-100 bg-white dark:bg-[#1A2234] border border-[#E5E7EB] dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-[#DC2626] dark:focus:border-red-500 transition-colors"
                   >
                     <option value="USD">USD ($)</option>
                     <option value="EUR">EUR (€)</option>
@@ -218,12 +218,12 @@ export const CreateProjectPage: React.FC = () => {
             </div>
 
             {/* AI Explanation Notice */}
-            <div className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] flex items-start gap-3">
-              <div className="w-8 h-8 rounded-md bg-[#FEF2F2] border border-red-200 flex items-center justify-center text-[#DC2626] flex-shrink-0 mt-0.5">
+            <div className="p-4 rounded-lg bg-[#F9FAFB] dark:bg-gray-800/40 border border-[#E5E7EB] dark:border-gray-700 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-md bg-[#FEF2F2] dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 flex items-center justify-center text-[#DC2626] dark:text-red-400 flex-shrink-0 mt-0.5">
                 <Sparkles className="w-4 h-4" />
               </div>
-              <div className="text-xs text-[#6B7280] leading-relaxed">
-                <p className="font-semibold text-[#111827] mb-0.5">
+              <div className="text-xs text-[#6B7280] dark:text-gray-400 leading-relaxed">
+                <p className="font-semibold text-[#111827] dark:text-gray-200 mb-0.5">
                   How AI Scope Generation Works:
                 </p>
                 Our AI analyzes the raw customer request and structures it into clearly defined deliverables,
